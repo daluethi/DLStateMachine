@@ -1,12 +1,18 @@
 # TBStateMachine
 
-[![Version](https://img.shields.io/cocoapods/v/TBStateMachine.svg?style=flat)](http://cocoadocs.org/docsets/TBStateMachine)
-[![License](https://img.shields.io/cocoapods/l/TBStateMachine.svg?style=flat)](http://cocoadocs.org/docsets/TBStateMachine)
-[![Platform](https://img.shields.io/cocoapods/p/TBStateMachine.svg?style=flat)](http://cocoadocs.org/docsets/TBStateMachine)
-[![Build Status](https://img.shields.io/travis/jkrumow/TBStateMachine/master.svg?style=flat)](https://travis-ci.org/jkrumow/TBStateMachine)
+[![Version](https://img.shields.io/cocoapods/v/DLStateMachine.svg?style=flat)](http://cocoadocs.org/docsets/DLStateMachine)
+[![License](https://img.shields.io/cocoapods/l/DLStateMachine.svg?style=flat)](http://cocoadocs.org/docsets/DLStateMachine)
+[![Platform](https://img.shields.io/cocoapods/p/DLStateMachine.svg?style=flat)](http://cocoadocs.org/docsets/DLStateMachine)
+[![Build Status](https://img.shields.io/travis/daluethi/DLStateMachine/master.svg?style=flat)](https://travis-ci.org/daluethi/DLStateMachine)
 
 
 A lightweight hierarchical state machine framework in Objective-C.
+
+## Notes: 
+* This is a fork from TBStateMachine. 
+* DLStateMachine wraps the NSOpearationQueue with an TBExecutor to allow synchron and asynchronous execution.
+* The synchron execution will be helpful if you need to include the State Machine in your unit tests.
+
 
 ## Features
 
@@ -20,7 +26,7 @@ A lightweight hierarchical state machine framework in Objective-C.
 * Asynchronous event handling
 * NSNotificationCenter support
 
-![Features](https://raw.githubusercontent.com/jkrumow/TBStateMachine/master/Documentation/test_setup.png)
+![Features](https://raw.githubusercontent.com/daluethi/DLStateMachine/master/Documentation/test_setup.png)
 
 ## Requirements
 
