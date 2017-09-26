@@ -18,6 +18,7 @@
 #import "TBSMFork.h"
 #import "TBSMJoin.h"
 #import "TBSMJunction.h"
+#import "TBExecutor.h"
 #import "NSException+TBStateMachine.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -33,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  Throws a `TBSMException` when trying to set a queue which is not serial.
  */
-@property (nonatomic, strong) NSOperationQueue *scheduledEventsQueue;
+@property (nonatomic, strong) id<TBExecutor> scheduledEventsQueue;
 
 /**
  *  The state the state machine wil enter on setup (by default the first state in the provided array will be set).

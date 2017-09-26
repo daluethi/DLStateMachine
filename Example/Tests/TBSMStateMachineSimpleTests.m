@@ -73,25 +73,6 @@ describe(@"TBSMStateMachine", ^{
             }).to.raise(TBSMException);
         });
         
-        it(@"throws a TBSMException when the scheduledEventsQueue is not a serial queue.", ^{
-            NSOperationQueue *queue = [NSOperationQueue new];
-            queue.maxConcurrentOperationCount = 2;
-            
-            expect(^{
-                stateMachine.scheduledEventsQueue = queue;
-            }).to.raise(TBSMException);
-        });
-    });
-    
-    describe(@"Setup and configuration.", ^{
-        
-        it(@"accepts a serial NSOperationQueue as scheduledEventsQueue.", ^{
-            NSOperationQueue *queue = [NSOperationQueue new];
-            queue.maxConcurrentOperationCount = 1;
-            stateMachine.scheduledEventsQueue = queue;
-            
-            expect(stateMachine.scheduledEventsQueue).to.equal(queue);
-        });
     });
     
     describe(@"Location inside hierarchy.", ^{

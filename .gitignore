@@ -32,3 +32,6 @@ cobertura.xml
 html
 *.gcno
 *.gcda
+
+### AppCode ###
+.idea

@@ -7,6 +7,7 @@
 //
 
 #import "TBSMStateMachine.h"
+#import "TBExecutor.h"
 
 @interface TBSMStateMachine ()
 @property (nonatomic, copy, readonly) NSString *name;
@@ -30,7 +31,7 @@
     if (self) {
         _name = name.copy;
         _priv_states = [NSMutableArray new];
-        _scheduledEventsQueue = [NSOperationQueue mainQueue];
+        _scheduledEventsQueue = [TBNSOperationQueueExecutor executorWithOperationQueue:[NSOperationQueue mainQueue]];
     }
     return self;
 }
@@ -43,7 +44,7 @@
 - (void)setStates:(NSArray *)states
 {
     [self.priv_states removeAllObjects];
-    
+
     for (id object in states) {
         if (![object isKindOfClass:[TBSMState class]])  {
             @throw ([NSException tb_notOfTypeStateException:object]);
@@ -65,11 +66,11 @@
     _initialState = initialState;
 }
 
-- (void)setScheduledEventsQueue:(NSOperationQueue *)scheduledEventsQueue
+- (void)setScheduledEventsQueue:(id<TBExecutor>)scheduledEventsQueue
 {
-    if (scheduledEventsQueue.maxConcurrentOperationCount > 1) {
-        @throw [NSException tb_noSerialQueueException:scheduledEventsQueue.name];
-    }
+    //    if (scheduledEventsQueue.maxConcurrentOperationCount > 1) {
+    //        @throw [NSException tb_noSerialQueueException:scheduledEventsQueue.name];
+    //    }
     _scheduledEventsQueue = scheduledEventsQueue;
 }
 
@@ -97,8 +98,8 @@
         [topStateMachine scheduleEvent:event];
         return;
     }
-    
-    [self.scheduledEventsQueue addOperationWithBlock:^{
+
+    [self.scheduledEventsQueue execute:^{
         [self handleEvent:event];
     }];
 }
@@ -118,7 +119,7 @@
         }
         NSArray *eventHandlers = [self.currentState eventHandlersForEvent:event];
         for (TBSMEventHandler *eventHandler in eventHandlers) {
-            
+
             TBSMTransition *transition = nil;
             if ([eventHandler.target isKindOfClass:[TBSMState class]]) {
                 transition = [[TBSMTransition alloc] initWithSourceState:self.currentState
@@ -166,7 +167,7 @@
 {
     NSUInteger targetLevel = targetState.parentVertex.path.count;
     NSUInteger thisLevel = self.path.count;
-    
+
     if (targetLevel < thisLevel) {
         _currentState = self.initialState;
     } else if (targetLevel == thisLevel) {
@@ -183,7 +184,7 @@
 {
     NSUInteger targetLevel = [[region.parentVertex path] count];
     NSUInteger thisLevel = self.path.count;
-    
+
     if (targetLevel == thisLevel) {
         _currentState = region;
     } else if (targetLevel > thisLevel) {
