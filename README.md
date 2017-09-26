@@ -1,4 +1,4 @@
-# TBStateMachine
+# DLStateMachine
 
 [![Version](https://img.shields.io/cocoapods/v/DLStateMachine.svg?style=flat)](http://cocoadocs.org/docsets/DLStateMachine)
 [![License](https://img.shields.io/cocoapods/l/DLStateMachine.svg?style=flat)](http://cocoadocs.org/docsets/DLStateMachine)
@@ -37,11 +37,11 @@ A lightweight hierarchical state machine framework in Objective-C.
 
 ## Installation
 
-TBStateMachine is available through [CocoaPods](http://cocoapods.org). To install
+DLStateMachine is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'TBStateMachine'
+pod 'DLStateMachine'
 ```
 
 ## Usage
@@ -244,11 +244,11 @@ stateMachine.scheduledEventsQueue = queue;
 
 ### Debug Support
 
-`TBStateMachine` offers debug support through the subspec `DebugSupport`. Simply add it to your `Podfile` (most likely to a beta target to keep it out of production code):
+`DLStateMachine` offers debug support through the subspec `DebugSupport`. Simply add it to your `Podfile` (most likely to a beta target to keep it out of production code):
 
 ```ruby
 target 'MyBetaApp', :exclusive => true do
-  pod 'TBStateMachine/DebugSupport'
+  pod 'DLStateMachine/DebugSupport'
 end
 ```
 
@@ -300,8 +300,8 @@ Clone the repo and run `pod install` from the `Example` directory first. The pro
 
 ## Author
 
-Julian Krumow, julian.krumow@bogusmachine.com
+Daniel Luethi
 
 ## License
 
-TBStateMachine is available under the MIT license. See the LICENSE file for more info.
+DLStateMachine is available under the MIT license. See the LICENSE file for more info.
